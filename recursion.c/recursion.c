@@ -1,3 +1,4 @@
+// finds the divisibility of number n by its factor and its squqre through recursion
 #include <stdio.h>
 #include <stdlib.h>
 
