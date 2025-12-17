@@ -1,4 +1,4 @@
-// finds the divisibility of number n by its factor and its squqre through recursion
+// finds the rightnearest which has common greatest common factor and find its 1-index value
 #include <stdio.h>
 #include <stdlib.h>
 
