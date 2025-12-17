@@ -1,3 +1,4 @@
+// finding a number is powerful or not using recursion.
 #include <stdio.h>
 #include <stdlib.h>
 
