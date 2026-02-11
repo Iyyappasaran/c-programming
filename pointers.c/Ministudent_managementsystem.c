@@ -1,0 +1,120 @@
+// Create a Mini Student Management system.
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student{
+    int id;
+    char name[20];
+    int marks;
+};
+
+void display(struct Student *p,int n){
+    printf("Student Records:\n");
+    for(int i=0;i<n;i++){
+        printf("%d %s %d\n",
+               (p+i)->id,
+               (p+i)->name,
+               (p+i)->marks);
+    }
+}
+
+void search(struct Student *p,int n,int id){
+    int found =0;
+    for(int i=0;i<n;i++){
+        if((p+i)->id==id){
+            found =1;
+            printf("Student found:\n%d %s %d\n",
+                   (p+i)->id,
+                   (p+i)->name,
+                   (p+i)->marks);
+                   break;
+        }
+    }
+    if(found==0){
+        printf("Student not found\n");
+    }
+}
+
+void update(struct Student *p,int n,int id,int mark){
+    int found =0;
+    for(int i=0;i<n;i++){
+        if((p+i)->id==id){
+            found =1;
+            (p+i)->marks = mark;
+            printf("Marks updated sucessfully\n");
+            break;
+        }
+    }
+    if(found==0){
+        printf("Student not found\n");
+    }
+}
+
+void topscorer(struct Student *p,int n){
+    struct Student *max = p;
+    for(int i=1;i<n;i++){
+        if((p+i)->marks>max->marks){
+            max = (p+i);
+        }
+    }
+    printf("Top scorer:\n%d %s %d\n",
+           max->id,
+           max->name,
+           max->marks);
+}
+
+int main(){
+    int n;
+    printf("Enter no. of students:\n");
+    scanf("%d",&n);
+    struct Student *p = malloc(n*sizeof(struct Student));
+    if(p==NULL){
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    printf("Enter  student details:\n");
+    for(int i=0;i<n;i++){
+        scanf("%d",&p[i].id);
+        scanf("%19s",p[i].name);
+        scanf("%d",&p[i].marks);
+    }
+    printf("Menu:\n");
+    printf("1. Display All Students\n");
+    printf("2. Search Student bu ID\n");
+    printf("3. Update Marks by ID\n");
+    printf("4. Display Top scorer\n");
+    printf("5. Exit\n");
+    int choice;
+    int id,mark;
+    do{
+    printf("Enter choice:\n");
+    scanf("%d",&choice);
+    switch(choice){
+    case 1:
+        display(p,n);
+        break;
+    case 2:
+        printf("Enter ID to search:\n");
+        scanf("%d",&id);
+        search(p,n,id);
+        break;
+    case 3:
+        printf("Enter ID to update:\n");
+        scanf("%d",&id);
+        printf("Enter new marks:\n");
+        scanf("%d",&mark);
+        update(p,n,id,mark);
+        break;
+    case 4:
+        topscorer(p,n);
+        break;
+    case 5:
+        printf("Exiting program...\n");
+        break;
+    default:
+        printf("Invalid choice\n");
+     }
+   }while(choice!=5);
+   free(p);
+    return 0;
+}
