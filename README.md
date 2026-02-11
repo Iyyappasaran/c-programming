@@ -10,6 +10,9 @@ covering core concepts and problem-solving.
 - Strings
 - Functions
 - Recursions
+- Structures
+- Pointers
+- Dynamic memory allocation
 
 ## Goal
 Build strong foundations in C before moving to Python,
